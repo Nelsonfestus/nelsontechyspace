@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 import { 
   Code, Smartphone, Bot, Layout, Zap, Rocket, 
   Users, Briefcase, Award, ChevronRight, ArrowRight, CheckCircle2, 
-  Globe, LayoutDashboard, Database, Star, Link, Mail
+  Globe, LayoutDashboard, Database, Star, Link, Mail, Menu, X
 } from 'lucide-react';
 import styles from './page.module.css';
 
@@ -40,6 +40,7 @@ const staggerContainer: Variants = {
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const heroRotateX = useTransform(scrollYProgress, [0, 0.2], [0, -45]);
@@ -64,9 +65,41 @@ export default function Home() {
               <Zap className={styles.logoIcon} />
               <span>Nelson<span className={styles.textGradient}>TechySpace</span></span>
             </div>
-            <button className={styles.navButton}>Let's Talk</button>
+            
+            {/* Desktop Menu */}
+            <div className={styles.desktopMenu}>
+              <a href="#about" className={styles.navLink}>About</a>
+              <a href="#services" className={styles.navLink}>Services</a>
+              <a href="#portfolio" className={styles.navLink}>Portfolio</a>
+              <a href="#contact" className={styles.navLink}>Contact</a>
+            </div>
+
+            <div className={styles.navActions}>
+              <button className={`${styles.navButton} ${styles.hideMobile}`}>Let's Talk</button>
+              <button className={styles.mobileMenuBtn} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                {isMobileMenuOpen ? <X size={24} color="white" /> : <Menu size={24} color="white" />}
+              </button>
+            </div>
           </div>
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        {isMobileMenuOpen && (
+          <motion.div 
+            className={styles.mobileMenu}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <a href="#about" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>About</a>
+            <a href="#services" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Services</a>
+            <a href="#portfolio" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Portfolio</a>
+            <a href="#contact" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+            <button className={styles.btnPrimary} style={{ width: '100%', marginTop: '1rem', justifyContent: 'center' }}>
+              Let's Talk
+            </button>
+          </motion.div>
+        )}
       </nav>
 
       {/* Hero Section */}
