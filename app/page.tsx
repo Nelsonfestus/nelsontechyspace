@@ -359,22 +359,27 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            {[
-              { author: "Seasons Team", quote: "Nelson delivered an exceptional experience for Seasons. The web app is faster, and our conversion rate skyrocketed. Highly recommended for premium vibe coding!" },
-              { author: "Filters Inc", quote: "The automation and bots built for Filters saved us hundreds of hours. Nelson Techy Space understands deep technical implementation while keeping the UI stunning." },
-              { author: "Timing Tech", quote: "Flawless execution from Discovery to Deployment. The Timing platform scale test passed with flying colors thanks to Nelson's architectural expertise." }
-            ].map((review, i) => (
-              <div key={i} className={styles.testimonialCard}>
-                <p className={styles.testimonialQuote}>"{review.quote}"</p>
-                <div className={styles.testimonialAuthor}>
-                  <div className={styles.authorAvatar}><Star size={24} /></div>
-                  <div className={styles.authorInfo}>
-                    <h4>{review.author}</h4>
-                    <p>Verified Client</p>
+            <div className={styles.testimonialTrack}>
+              {[
+                { author: "Seasons Team", quote: "Nelson delivered an exceptional experience for Seasons. The web app is faster, and our conversion rate skyrocketed. Highly recommended for premium vibe coding!" },
+                { author: "Filters Inc", quote: "The automation and bots built for Filters saved us hundreds of hours. Nelson Techy Space understands deep technical implementation while keeping the UI stunning." },
+                { author: "Timing Tech", quote: "Flawless execution from Discovery to Deployment. The Timing platform scale test passed with flying colors thanks to Nelson's architectural expertise." },
+                { author: "Seasons Team", quote: "Nelson delivered an exceptional experience for Seasons. The web app is faster, and our conversion rate skyrocketed. Highly recommended for premium vibe coding!" },
+                { author: "Filters Inc", quote: "The automation and bots built for Filters saved us hundreds of hours. Nelson Techy Space understands deep technical implementation while keeping the UI stunning." },
+                { author: "Timing Tech", quote: "Flawless execution from Discovery to Deployment. The Timing platform scale test passed with flying colors thanks to Nelson's architectural expertise." }
+              ].map((review, i) => (
+                <div key={i} className={styles.testimonialCard}>
+                  <p className={styles.testimonialQuote}>"{review.quote}"</p>
+                  <div className={styles.testimonialAuthor}>
+                    <div className={styles.authorAvatar}><Star size={24} /></div>
+                    <div className={styles.authorInfo}>
+                      <h4>{review.author}</h4>
+                      <p>Verified Client</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
